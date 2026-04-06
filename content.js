@@ -63,7 +63,7 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 });
 
 let filterScheduled = false;
-function scheduleFilterThrottled() {
+function throttledFilter() {
   if (filterScheduled) return;
   filterScheduled = true;
   requestAnimationFrame(() => {
@@ -73,5 +73,5 @@ function scheduleFilterThrottled() {
 }
 
 // MutationObserver watches for new videos loaded dynamically
-const observer = new MutationObserver(() => scheduleFilterThrottled());
+const observer = new MutationObserver(() => throttledFilter());
 observer.observe(document.body, { childList: true, subtree: true });
