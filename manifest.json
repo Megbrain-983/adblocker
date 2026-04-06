@@ -12,7 +12,9 @@
     "*://*.youtube.com/*",
     "*://*.instagram.com/*",
     "*://*.doubleclick.net/*",
-    "*://*.googlesyndication.com/*"
+    "*://*.googlesyndication.com/*",
+    "*://*.googleadservices.com/*",
+    "*://*.adservice.google.com/*"
   ],
   "background": {
     "service_worker": "background.js"

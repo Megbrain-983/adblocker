@@ -1,5 +1,3 @@
-// ---- Your blocked keywords (edit this list) ----
-// // Replace the hardcoded BLOCKED_KEYWORDS line with this:
 let BLOCKED_KEYWORDS = [];
 
 chrome.storage.sync.get("keywords", data => {
@@ -57,6 +55,24 @@ function runFilter() {
 
 runFilter();
 
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName === "sync" && changes.keywords) {
+    BLOCKED_KEYWORDS = changes.keywords.newValue || [];
+    runFilter();
+  }
+});
+
+let filterScheduled = false;
+// Batch multiple rapid DOM mutations into a single filter pass per animation frame.
+function scheduleFilter() {
+  if (filterScheduled) return;
+  filterScheduled = true;
+  requestAnimationFrame(() => {
+    filterScheduled = false;
+    runFilter();
+  });
+}
+
 // MutationObserver watches for new videos loaded dynamically
-const observer = new MutationObserver(() => runFilter());
+const observer = new MutationObserver(() => scheduleFilter());
 observer.observe(document.body, { childList: true, subtree: true });
