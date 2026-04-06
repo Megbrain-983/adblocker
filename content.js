@@ -63,7 +63,7 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 });
 
 let filterScheduled = false;
-// Batch many rapid DOM mutations into one filter pass per animation frame.
+// Batch multiple rapid DOM mutations into a single filter pass per animation frame.
 function scheduleFilter() {
   if (filterScheduled) return;
   filterScheduled = true;
