@@ -63,7 +63,8 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 });
 
 let filterScheduled = false;
-function throttledFilter() {
+// Batch many rapid DOM mutations into one filter pass per animation frame.
+function scheduleFilter() {
   if (filterScheduled) return;
   filterScheduled = true;
   requestAnimationFrame(() => {
@@ -73,5 +74,5 @@ function throttledFilter() {
 }
 
 // MutationObserver watches for new videos loaded dynamically
-const observer = new MutationObserver(() => throttledFilter());
+const observer = new MutationObserver(() => scheduleFilter());
 observer.observe(document.body, { childList: true, subtree: true });
