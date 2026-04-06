@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; width: 280px; padding: 16px; }
+    h2 { margin: 0 0 12px; font-size: 15px; }
+    textarea {
+      width: 100%; height: 80px; font-size: 12px;
+      border: 1px solid #ccc; border-radius: 6px;
+      padding: 6px; box-sizing: border-box; resize: vertical;
+    }
+    button {
+      margin-top: 8px; width: 100%; padding: 8px;
+      background: #4f46e5; color: white;
+      border: none; border-radius: 6px;
+      font-size: 13px; cursor: pointer;
+    }
+    button:hover { background: #4338ca; }
+    #status { margin-top: 8px; font-size: 12px; color: green; }
+  </style>
+</head>
+<body>
+  <h2>🚫 Ad Blocker + Video Filter</h2>
+  <label style="font-size:12px">Blocked keywords (one per line):</label>
+  <textarea id="keywords" placeholder="crypto&#10;clickbait&#10;giveaway"></textarea>
+  <button onclick="save()">Save Keywords</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
