@@ -13,3 +13,5 @@ function save() {
     setTimeout(() => document.getElementById("status").textContent = "", 2000);
   });
 }
+
+document.getElementById("saveBtn").addEventListener("click", save);
